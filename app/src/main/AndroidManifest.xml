@@ -19,6 +19,11 @@
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" />
+
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="face" />
+
         <activity android:name=".TextRecognition" />
         <activity android:name=".FaceDetection" />
         <activity android:name=".BarcodeScanning" />
