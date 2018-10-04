@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayoutLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
+    android:layout_margin="5dp"
     >
-
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:src="@drawable/text_recognition"
         android:id="@+id/imgTextRecognition"
-        />
+        android:contentDescription="@string/text_recognition" />
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:src="@drawable/face_detection"
         android:id="@+id/imgFaceDetection"
         />
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:src="@drawable/barcode_scanning"
         android:id="@+id/imgBarcodeScanning"
         />
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:src="@drawable/image_labeling"
         android:id="@+id/imgImageLabeling"
         />
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:src="@drawable/landmark_recognition"
         android:id="@+id/imgLandmarkRecognition"
         />
-
-
-
-
-</LinearLayoutLayout>
+</LinearLayout>

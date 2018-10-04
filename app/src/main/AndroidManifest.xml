@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.mlkitbaseapis">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ml_kit_logo"
@@ -16,19 +20,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" />
 
-        <meta-data
-            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-            android:value="face" />
+        <!-- <meta-data -->
+        <!-- android:name="com.google.firebase.ml.vision.DEPENDENCIES" -->
+        <!-- android:value="face" /> -->
 
         <activity android:name=".TextRecognition" />
         <activity android:name=".FaceDetection" />
         <activity android:name=".BarcodeScanning" />
         <activity android:name=".ImageLabelling" />
-        <activity android:name=".LandmarkRecognition"></activity>
+        <activity android:name=".LandmarkRecognition" />
+        <activity android:name=".CustomActivity"></activity>
     </application>
 
 </manifest>
