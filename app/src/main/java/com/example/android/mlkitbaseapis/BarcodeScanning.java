@@ -19,7 +19,7 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 
 import java.util.List;
 
-public class BarcodeScanning extends BaseCameraActivity {
+public class BarcodeScanning extends BaseActivity {
     private ImageView mImageView;
     private TextView mTextView;
 

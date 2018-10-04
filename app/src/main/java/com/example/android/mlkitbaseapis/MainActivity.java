@@ -4,52 +4,39 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+    private String[] classNames;
+    private static final Class<?>[] CLASSES = new Class<?>[]{
+            TextRecognition.class,
+            BarcodeScanning.class,
+            FaceDetection.class,
+            ImageLabelling.class,
+            LandmarkRecognition.class,
+//            CustomActivity.class,
+    };
 
-    private ImageView imgTextRecognition,imgFaceDetection,imgBarcodeScanning,imgImageLabeling,imgLandmarkRecognition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imgTextRecognition = findViewById(R.id.imgTextRecognition);
-        imgBarcodeScanning = findViewById(R.id.imgBarcodeScanning);
-        imgImageLabeling = findViewById(R.id.imgImageLabeling);
-        imgFaceDetection = findViewById(R.id.imgFaceDetection);
-        imgLandmarkRecognition = findViewById(R.id.imgLandmarkRecognition);
+        classNames = getResources().getStringArray(R.array.class_name);
 
-        imgTextRecognition.setOnClickListener(this);
-        imgLandmarkRecognition.setOnClickListener(this);
-        imgBarcodeScanning.setOnClickListener(this);
-        imgFaceDetection.setOnClickListener(this);
-        imgImageLabeling.setOnClickListener(this);
+        ListView listView = findViewById(R.id.list_view);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, classNames);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
     }
 
     @Override
-    public void onClick(View view) {
-
-        switch (view.getId()){
-
-            case R.id.imgTextRecognition : {startActivity(new Intent(getBaseContext(),TextRecognition.class));
-                                               break;}
-
-            case R.id.imgBarcodeScanning : { startActivity(new Intent(getBaseContext(),BarcodeScanning.class));
-            break;
-            }
-            case R.id.imgFaceDetection : { startActivity(new Intent(getBaseContext(),FaceDetection.class));
-                break;
-            }
-            case R.id.imgLandmarkRecognition : { startActivity(new Intent(getBaseContext(),LandmarkRecognition.class));
-                break;
-            }
-            case R.id.imgImageLabeling : { startActivity(new Intent(getBaseContext(),ImageLabelling.class));
-                break;
-            }
-
-
-        }
-
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        Intent intent = new Intent(this, CLASSES[position]);
+        intent.putExtra(BaseActivity.ACTION_BAR_TITLE, classNames[position]);
+        startActivity(intent);
     }
 }

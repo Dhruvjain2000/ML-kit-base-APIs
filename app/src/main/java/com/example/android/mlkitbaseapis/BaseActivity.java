@@ -12,8 +12,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.android.mlkitbaseapis.Helpers.MyHelper;
+import com.google.firebase.FirebaseApp;
 
 import java.io.File;
 
@@ -28,6 +32,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FirebaseApp.initializeApp(this);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -111,8 +116,15 @@ public class BaseActivity extends AppCompatActivity {
     private void openCamera() {
         imageFile = MyHelper.createTempFile(imageFile);
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        Uri photo = FileProvider.getUriForFile(this, getPackageName() + ".provider", imageFile);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, photo);
-        startActivityForResult(intent, RC_TAKE_PICTURE);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            try {
+                Uri photo = FileProvider.getUriForFile(this, getPackageName() + ".provider", imageFile);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, photo);
+                startActivityForResult(intent, RC_TAKE_PICTURE);
+            }catch (NullPointerException e){
+                Log.e("Exceprion", "openCamera: " + e.getMessage() );
+            }
+        }
+
     }
 }
